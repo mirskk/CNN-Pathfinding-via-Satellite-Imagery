@@ -1,0 +1,75 @@
+// DEV_LOG started 19/11/2026 //
+===============TASKS=============================================================================================================
+FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\layer_logic\DenseLayer1.cpp
+TASK: Just complete it. It's called the "Fully connected layer". I believe you only need one of those.
+
+FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\layer_logic\kernel.cpp
+TASK: Fill in the kernel's logic to support the weights and biases distribution for the dense layer.
+
+FILE: C:\Users\name\Desktop\c++\pathfinding_cnn\layer_logic\runConvolution.cpp // C:\Users\name\Desktop\c++\gps_imagery\neurons\LayerTwo.cpp
+TASK: Rename the first conv+pool to "InputLayer.cpp/h". Their names make no sense currently. You've written 
+them down as if they're the only components of the CNN.
+
+-> FILE: C:\Users\name\Desktop\c++\pathfinding_cnn\layer_logic\main.cpp
+TASK: Engage whatever is left there under comments. It's the implementation of the dense layer.
+
+    FIXED AT 18:59, 23/11/2026: Read everything regarding what can be done. Comment is deleted and all is 
+    implemented.
+
+FOLDER: C\:Users\name\Desktop\c++\pathfinding_cnn
+TASK: Fix up the names of the layers + the GUI. Getting lost due to the nameclashing of the layers. Some layers and numbered with
+arabic numeration, others are numbered with the latin names of said numbers.
+
+FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\layer_logic\MSMT_A
+TASK: Start implementing the "Multiple Source Multiple Target A*" algorithm. Learn this algorithm in the process.
+
+=================================================================================================================================
+
+
+==============ISSUES=============================================================================================================
+FILE: C\:Users\name\Desktop\c++\gps-imagery\gui\trying.py
+ISSUE: Lock the resolution to 1280x720 of the GUI's map in. You're getting photos in random resolutions.
+You should be getting 1280x720 every time you search. You'll keep getting differently sized 
+flattened tensor data.
+
+-> FILE: C\:Users\name\Desktop\c++\gps-imagery\gui\trying.py
+ISSUE: Fix the path of the image saving in GUI. It's sending your map screenshots to Mars. It's actually
+created a whole new folder in a whole new location. They are going to C:\~\pics\pics, not C:\~\pathfinding_cnn\pics.
+
+    FIXED AT 14:28, 21/11/2026: Path is fixed. Since "user_pictures_dir" was essentially targeting the system-grade
+    "Pictures" folder of my OS, I had to switch to a class Path from the pathlib library. Added some parent-parent
+    relationship to it so that 'pics' can be located.
+
+-> FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\gui\trying.py
+SUB-ISSUE: Name collision. Figure out how to generate new names for the files, maybe DD/MM/YY/HH/MM/SS/LAT/LON/ZOOM_IDX,
+with a leading number. It's in the GUI, so that info is available. You're saving new photos under the same name over and over
+again dude, it's unserious.
+
+    FIXED AT 19:21, 20/11/2026: Used the datetime module to get an accurate timestamp and decided on no leading number.
+    I instead added the info available. The format is LAT_LNG_DD-MM-YY_HH-MM-SS_ZOOM-IDX. It's precise enough
+    for no names to clash even if the coordinates are identical, because of the seconds added in the timestamp.
+    Screenshots nicely save to the designated folder as PNGs.
+
+FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\gui\trying.py
+SUB-ISSUE: Add a limit on the button clicking to prevent name clashes. User should not be able to take multiple screenshots 
+of the same location in the same exact second. Add a cooldown of 1 second, just in case.
+
+FOLDER: C\:Users\name\Desktop\c++\pathfinding_cnn\
+SUB-ISSUE: The pooling layers don't all need separate files, the logic remains the same in most cases. I think you can
+remove half of them, as the convolution, that is now one file only.
+
+
+FILE: C:\Users\name\Desktop\c++\pathfinding_cnn\layer_logic\Layer16.cpp // C:\Users\name\Desktop\c++\gps_imagery\neurons\main.cpp
+ISSUE: Try stopping the image shrinkage at a number more than 7x2x32. Try making less than 32 channels on a 
+higher resolution (in the 10s-15s), as the information will start getting lost dramatically.
+Don't make the 64 channels though. It's a tensor. It will get messy. Keep using linear vectors, no hashmaps or linked lists.
+
+-> FILE: C\:Users\name\Desktop\c++\pathfinding_cnn\gui\trying.py
+ISSUE: The names of the pics look great, but you have to fix the zoom index number too. It gets out of hand, the zoom index
+is perfect if user uses the buttons provided, but if they use scroll (like normal people), the zoom index is never a perfect
+whole number. C:\Users\name\Desktop\c++\pathfinding_cnn\pics\42.439276_23.636660_21-11-2026_12-21-07_18.599999999999998.png - 
+like what the hell is this.
+
+    FIXED AT 14:30, 21/11/2026: Just typecasted the zoom to a floating point number and added floating point limitation of :.2f
+    to the float variable in the filename's f-string itself - works like a charm.
+=================================================================================================================================
