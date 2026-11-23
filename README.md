@@ -25,7 +25,6 @@ pathfinding_cnn/
 │   ├── Flattening.*               -> Tensor-to-1D vector flattening
 │   ├── denseLayer.*               -> Fully connected dense layer (in progress)
 │   └── main.cpp                   -> Forward-pass pipeline & dimension tracking
-├── algorithm_planning.txt         -> Mathematical & architectural design notes
 └── DEV_LOG.txt                    -> Development progress & debugging log
 ```
 
